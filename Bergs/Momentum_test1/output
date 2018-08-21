@@ -1,0 +1,813 @@
+ 
+***NOTICE TO DDT USERS*** 
+With version 4.0 (and later) of DDT, the procedure for memory debugging has 
+changed.  You no longer need to compile with the ddtmem-cc, ddtmem-CC, 
+and ddtmem-ftn scripts.  Rather, just load the ddt-memdebug module (in 
+addition to this module) and compile as you normally would (with cc, 
+CC and/or ftn).  The appropriate memory debugging libraries will be 
+linked automatically. 
+ 
+Please direct questions to help@olcf.ornl.gov 
+ 
+ModuleCmd_Load.c(244):ERROR:105: Unable to locate a modulefile for 'python_matplotlib/1.4.3'
+PrgEnv-gnu(3):ERROR:105: Unable to locate a modulefile for 'PrgEnv-gnu/5.2.82'
+ModuleCmd_Load.c(244):ERROR:105: Unable to locate a modulefile for 'python_scipy/0.17.0'
+ModuleCmd_Load.c(244):ERROR:105: Unable to locate a modulefile for 'python_netcdf4'
+ModuleCmd_Load.c(244):ERROR:105: Unable to locate a modulefile for 'python_numpy'
+ModuleCmd_Load.c(244):ERROR:105: Unable to locate a modulefile for 'python_pygtk'
+ModuleCmd_Load.c(244):ERROR:105: Unable to locate a modulefile for 'python_matplotlib'
+ModuleCmd_Load.c(244):ERROR:105: Unable to locate a modulefile for 'python_scipy/0.17.0'
+PrgEnv-gnu(3):ERROR:105: Unable to locate a modulefile for 'PrgEnv-gnu/5.2.82'
+ModuleCmd_Load.c(244):ERROR:105: Unable to locate a modulefile for 'python_scipy/0.17.0'
+NOTE from PE     0: MPP_DOMAINS_SET_STACK_SIZE: stack size set to    32768.
+ &MPP_IO_NML
+ HEADER_BUFFER_VAL       =       16384,
+ GLOBAL_FIELD_ON_ROOT_PE = T,
+ IO_CLOCKS_ON    = F,
+ SHUFFLE =           0,
+ DEFLATE_LEVEL   =          -1,
+ CF_COMPLIANCE   = F
+ /
+NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to     131072.
+NOTE from PE     0: MPP_DOMAINS_SET_STACK_SIZE: stack size set to  2000000.
+ Entering coupler_init at 20171018 132226.727
+ Starting initializing ensemble_manager at 20171018 132226.745
+ Finished initializing ensemble_manager at 20171018 132226.753
+NOTE from PE     0: coupler_init: Atmos PE range:      0    31 ens_01
+NOTE from PE     0: coupler_init: Ocean PE range:      0    31 ens_01
+NOTE from PE     0: coupler_init: Land PE range:      0    31 ens_01
+NOTE from PE     0: coupler_init: Ice PE range:      0    31 ens_01
+NOTE from PE     0: coupler_init: Running with SERIAL coupling.
+NOTE from PE     0: coupler_init: Sending most recent fluxes to ocean.
+ Starting to initialize diag_manager at 20171018 132226.755
+ Finished initializing diag_manager at 20171018 132226.831
+ Starting to initialize tracer_manager at 20171018 132226.837
+ Finished initializing tracer_manager at 20171018 132226.851
+ Starting to initialize coupler_types at 20171018 132226.851
+ 
+ Dumping coupler_mod/types tree
+types/
+      air_sea_gas_flux_generic/
+                               implementation/
+                                              ocmip2/
+                                                     num_parameters = 2
+                               num_flags = 0
+                               use_atm_pressure = T
+                               use_10m_wind_speed = T
+                               pass_through_ice = F
+                               atm/
+                                   name[1] = 'pcair'
+                                   name[2] = 'u10'
+                                   name[3] = 'psurf'
+                                   long_name[1] = 'Atmospheric concentration'
+                                   long_name[2] = 'Wind speed at 10 m'
+                                   long_name[3] = 'Surface atmospheric pressure'
+                                   units[1] = 'mol/mol'
+                                   units[2] = 'm/s'
+                                   units[3] = 'Pa'
+                               ice/
+                                   name[1] = 'alpha'
+                                   name[2] = 'csurf'
+                                   name[3] = 'sc_no'
+                                   long_name[1] = 'Solubility w.r.t. atmosphere'
+                                   long_name[2] = 'Ocean concentration'
+                                   long_name[3] = 'Schmidt number'
+                                   units[1] = 'mol/m^3/atm'
+                                   units[2] = 'mol/m^3'
+                                   units[3] = 'dimensionless'
+                               flux/
+                                    name[1] = 'flux'
+                                    name[2] = 'deltap'
+                                    name[3] = 'kw'
+                                    long_name[1] = 'Surface flux'
+                                    long_name[2] = 'Ocean-air delta pressure'
+                                    long_name[3] = 'Piston velocity'
+                                    units[1] = 'mol/m^2/s'
+                                    units[2] = 'uatm'
+                                    units[3] = 'm/s'
+      air_sea_gas_flux/
+                       implementation/
+                                      ocmip2/
+                                             num_parameters = 2
+                                      ocmip2_data/
+                                                  num_parameters = 2
+                                      linear/
+                                             num_parameters = 3
+                       num_flags = 0
+                       use_atm_pressure = T
+                       use_10m_wind_speed = T
+                       pass_through_ice = F
+                       atm/
+                           name[1] = 'pcair'
+                           name[2] = 'u10'
+                           name[3] = 'psurf'
+                           long_name[1] = 'Atmospheric concentration'
+                           long_name[2] = 'Wind speed at 10 m'
+                           long_name[3] = 'Surface atmospheric pressure'
+                           units[1] = 'mol/mol'
+                           units[2] = 'm/s'
+                           units[3] = 'Pa'
+                       ice/
+                           name[1] = 'alpha'
+                           name[2] = 'csurf'
+                           long_name[1] = 'Solubility from atmosphere times Schmidt number term'
+                           long_name[2] = 'Ocean concentration times Schmidt number term'
+                           units[1] = 'mol/m^3/atm'
+                           units[2] = 'mol/m^3'
+                       flux/
+                            name = 'flux'
+                            long_name = 'Surface flux'
+                            units = 'mol/m^2/s'
+      air_sea_deposition/
+                         implementation/
+                                        dry/
+                                            num_parameters = 1
+                                        wet/
+                                            num_parameters = 1
+                         num_flags = 0
+                         use_atm_pressure = F
+                         use_10m_wind_speed = F
+                         pass_through_ice = T
+                         atm/
+                             name = 'deposition'
+                             long_name = 'Atmospheric deposition'
+                             units = 'kg/m^2/s'
+                         ice/
+                             name = NULL
+                             long_name = NULL
+                             units = NULL
+                         flux/
+                              name = 'flux'
+                              long_name = 'Surface deposition'
+                              units = 'mol/m^2/s'
+      land_sea_runoff/
+                      implementation/
+                                     river/
+                                           num_parameters = 1
+                      num_flags = 0
+                      use_atm_pressure = F
+                      use_10m_wind_speed = F
+                      pass_through_ice = T
+                      atm/
+                          name = 'runoff'
+                          long_name = 'Concentration in land runoff'
+                          units = 'mol/m^3'
+                      ice/
+                          name = NULL
+                          long_name = NULL
+                          units = NULL
+                      flux/
+                           name = 'flux'
+                           long_name = 'Concentration in land runoff'
+ Finished initializing coupler_types at 20171018 132226.852
+ Beginning to initialize component models at 20171018 132226.852
+ Starting to initialize atmospheric model at 20171018 132226.852
+                           units = 'mol/m^3'
+ atmos model domain decomposition
+whalo =    1, ehalo =    1, shalo =    1, nhalo =    1
+  X-AXIS =   30  30  30  30  30  30  30  30
+  Y-AXIS =   10  10  10  10
+NOTE from PE     0: grid_mod/get_grid_cell_vertices: domain is not present, global data will be read
+NOTE from PE     0: grid_mod/get_grid_cell_centers: domain is not present, global data will be read
+ Finished initializing atmospheric model at 20171018 132226.964
+ Starting to initialize land model at 20171018 132227.032
+ land model domain decomposition
+whalo =    1, ehalo =    1, shalo =    1, nhalo =    1
+  X-AXIS =   30  30  30  30  30  30  30  30
+  Y-AXIS =   10  10  10  10
+NOTE from PE     0: grid_mod/get_grid_cell_centers: domain is not present, global data will be read
+ Finished initializing land model at 20171018 132227.082
+ Starting to initialize ice model at 20171018 132227.092
+NOTE from PE     0: open_param_file: SIS_input has been opened successfully.
+NOTE from PE     0: open_param_file: SIS_override has been opened successfully.
+NOTE from PE     0: callTree: ---> ice_model_init(), ice_model.F90
+
+WARNING from PE     0: MOM_obsolete_params: INTERSPERSED_ICE_THERMO is an obsolete run-time flag.
+
+
+WARNING from PE     0: MOM_obsolete_params: INTERSPERSED_ICE_THERMO is an obsolete run-time flag.
+
+ ice model domain decomposition
+whalo =    2, ehalo =    2, shalo =    2, nhalo =    2
+  X-AXIS =   30  30  30  30  30  30  30  30
+  Y-AXIS =   10  10  10  10
+NOTE from PE     0: callTree:    o domains initialized (ice_model_init)
+ MOM domain decomposition
+whalo =    2, ehalo =    2, shalo =    2, nhalo =    2
+  X-AXIS =   30  30  30  30  30  30  30  30
+  Y-AXIS =   10  10  10  10
+NOTE from PE     0: callTree:    ---> SIS_initialize_fixed(), SIS_fixed_initialization.F90
+NOTE from PE     0: callTree:       ---> set_grid_metrics(), MOM_grid_initialize.F90
+NOTE from PE     0: callTree:          ---> set_grid_metrics_from_mosaic(), MOM_grid_initialize.F90
+ MOM_MOSAIC domain decomposition
+whalo =    5, ehalo =    5, shalo =    5, nhalo =    5
+  X-AXIS =   60  60  60  60  60  60  60  60
+  Y-AXIS =   20  20  20  20
+NOTE from PE     0: callTree:          <--- set_grid_metrics_from_mosaic()
+NOTE from PE     0: callTree:          ---> set_derived_metrics(), MOM_grid_initialize.F90
+NOTE from PE     0: callTree:          <--- set_derived_metrics()
+NOTE from PE     0: callTree:       <--- set_grid_metrics()
+NOTE from PE     0: callTree:       ---> initialize_topography_from_file(), MOM_shared_initialization.F90
+NOTE from PE     0: callTree:          ---> apply_topography_edits_from_file(), MOM_shared_initialization.F90
+NOTE from PE     0: callTree:          <--- initialize_topography_from_file()
+NOTE from PE     0: callTree:          ---> limit_topography(), MOM_shared_initialization.F90
+NOTE from PE     0: callTree:          <--- limit_topography()
+NOTE from PE     0: callTree:          ---> initialize_masks(), MOM_grid_initialize.F90
+NOTE from PE     0: callTree:          <--- initialize_masks()
+NOTE from PE     0: callTree:          ---> MOM_initialize_rotation(), MOM_shared_initialization.F90
+NOTE from PE     0: callTree:             ---> set_rotation_planetary(), MOM_shared_initialization.F90
+NOTE from PE     0: callTree:             <--- set_rotation_planetary()
+NOTE from PE     0: callTree:          <--- MOM_initialize_rotation()
+NOTE from PE     0: callTree:       <--- SIS_initialize_fixed()
+NOTE from PE     0:   SIS_hor_grid.F90, set_hor_grid: allocating metrics
+ ice model aux domain decomposition
+whalo =    2, ehalo =    2, shalo =    2, nhalo =    2
+  X-AXIS =   30  30  30  30  30  30  30  30
+  Y-AXIS =   10  10  10  10
+ ice_nohalo domain decomposition
+whalo =    0, ehalo =    0, shalo =    0, nhalo =    0
+  X-AXIS =   30  30  30  30  30  30  30  30
+  Y-AXIS =   10  10  10  10
+ ice_nohalo domain decomposition
+whalo =    0, ehalo =    0, shalo =    0, nhalo =    0
+  X-AXIS =   30  30  30  30  30  30  30  30
+  Y-AXIS =   10  10  10  10
+NOTE from PE     0: fms_io(query_initialized_name): Unknown restart variable t_surf_ice queried for initialization.
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ice_model/SINROT is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ice_model/SINROT is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ice_model/COSROT is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ice_model/COSROT is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ice_model/GEOLON is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ice_model/GEOLON is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ice_model/GEOLAT is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ice_model/GEOLAT is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ice_model/CELL_AREA is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ice_model/CELL_AREA is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+NOTE from PE     0: callTree:       ---> SIS_slow_thermo_init(), SIS_slow_thermo.F90
+NOTE from PE     0: callTree:       <--- SIS_slow_thermo_init()
+NOTE from PE     0: callTree:       ---> SIS_dyn_trans_init(), SIS_dyn_trans.F90
+NOTE from PE     0: callTree:       <--- SIS_dyn_trans_init()
+ diamond domain decomposition
+whalo =    2, ehalo =    2, shalo =    2, nhalo =    2
+  X-AXIS =   30  30  30  30  30  30  30  30
+  Y-AXIS =   10  10  10  10
+
+WARNING from PE     0: diamonds, framework: Since the lat/lon grid is off, the x-direction is being set as non-periodic. Set Lx not equal to 360 override.
+
+
+WARNING from PE     0: diamonds, framework: Since the lat/lon grid is off, the x-direction is being set as non-periodic. Set Lx not equal to 360 override.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field icebergs/lon is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field icebergs/lon is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field icebergs/lat is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field icebergs/lat is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field icebergs/area is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field icebergs/area is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field icebergs/mask is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field icebergs/mask is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+ Begining Basal Melting Unit Test
+ Two equation model basal_melt =  5.157419215314034E-006
+ Three equation model basal_melt =  3.870544396589682E-006
+diamonds, grd_chksum3: read_restart_calvi chksum=            1824879632 chksum2=            -547743005 min= 1.006553509E+04 max= 7.392748725E+11 mean= 7.978056050E+10 rms= 1.590049032E+11 sd= 1.375413444E+11
+diamonds, grd_chksum2: read_restart_calvi chksum=                     0 chksum2=                     0 min= 0.000000000E+00 max= 0.000000000E+00 mean= 0.000000000E+00 rms= 0.000000000E+00 sd= 0.000000000E+00
+diamonds, grd_chksum2: read_restart_calvi chksum=                     0 chksum2=                     0 min= 0.000000000E+00 max= 0.000000000E+00 mean= 0.000000000E+00 rms= 0.000000000E+00 sd= 0.000000000E+00
+diamonds, grd_chksum2: read_restart_calvi chksum=                     0 chksum2=                     0 min= 0.000000000E+00 max= 0.000000000E+00 mean= 0.000000000E+00 rms= 0.000000000E+00 sd= 0.000000000E+00
+NOTE from PE     0: read_restart_bergs_new: Using new icebergs restart read
+diamonds, bergs_chksum: read_restart bergs chksum=            -293019005 chksum2=            1888465072 chksum3=           -1840439103 chksum4=           -1840439103 chksum5=            1452591339 #=                 10882
+diamonds, grd_chksum2:    # of bergs/cell chksum=                     0 chksum2=                     0 min= 0.000000000E+00 max= 0.000000000E+00 mean= 0.000000000E+00 rms= 0.000000000E+00 sd= 0.000000000E+00
+diamonds, read_ocean_depth: reading INPUT/topog.nc                       
+NOTE from PE     0: read_restart_bonds_bergs_new: Using icebergs bond restart read
+ diamonds, bond read restart : Number of bonds in file        2020
+ diamonds, bond read restart : Number of bonds (including halos)        2546
+ diamonds, bond read restart : Number of true bonds created        2020
+ Total number of bonds is:         2020 
+ All iceberg bonds are connected and working well
+SIS Date     11/01/01 00:00:00      0: Area 0.000000000000E+00 0.000000000000E+00, Mass  0.00000000000E+00 0.00000000000E+00
+ Total Ice Mass:   0.0000000000000000E+00, Change:  0.00000E+00 Error:  0.00000E+00 ( 0.0E+00)
+ Total Ice Salt:   0.0000000000000000E+00, Change:  0.00000E+00 Error:  0.00000E+00
+ Total Ice Heat:   0.0000000000000000E+00, Change:  0.00000E+00 Error:  0.00000E+00
+NOTE from PE     0: callTree:       ---> SIS_fast_thermo_init(), SIS_fast_thermo.F90
+NOTE from PE     0: callTree:       <--- SIS_fast_thermo_init()
+NOTE from PE     0: close_param_file: SIS_input has been closed successfully.
+NOTE from PE     0: close_param_file: SIS_override has been closed successfully.
+NOTE from PE     0: callTree:    <--- ice_model_init()
+ Finished initializing ice model at 20171018 132227.779
+ Starting to initialize ocean model at 20171018 132227.789
+NOTE from PE     0: callTree:    ---> ocean_model_init(), ocean_model_MOM.F90
+NOTE from PE     0: open_param_file: MOM_input has been opened successfully.
+NOTE from PE     0: open_param_file: MOM_override has been opened successfully.
+
+WARNING from PE     0: MOM_file_parser : USE_JACKSON_PARAM over-ridden.  Line: 'USE_JACKSON_PARAM = True' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : USE_JACKSON_PARAM over-ridden.  Line: 'USE_JACKSON_PARAM = True' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : DT over-ridden.  Line: 'DT = 10' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : DT over-ridden.  Line: 'DT = 10' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : DT_THERM over-ridden.  Line: 'DT_THERM = 10' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : DT_THERM over-ridden.  Line: 'DT_THERM = 10' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : ICE_SHELF over-ridden.  Line: 'ICE_SHELF = False' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : ICE_SHELF over-ridden.  Line: 'ICE_SHELF = False' in file MOM_override.
+
+ MOM domain decomposition
+whalo =    4, ehalo =    4, shalo =    4, nhalo =    4
+  X-AXIS =   30  30  30  30  30  30  30  30
+  Y-AXIS =   10  10  10  10
+ MOM domain decomposition
+whalo =    4, ehalo =    4, shalo =    4, nhalo =    4
+  X-AXIS =   30  30  30  30  30  30  30  30
+  Y-AXIS =   10  10  10  10
+
+WARNING from PE     0: MOM_file_parser : NK over-ridden.  Line: 'NK = 72' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : NK over-ridden.  Line: 'NK = 72' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : ENERGETICS_SFC_PBL over-ridden.  Line: 'ENERGETICS_SFC_PBL = True' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : ENERGETICS_SFC_PBL over-ridden.  Line: 'ENERGETICS_SFC_PBL = True' in file MOM_override.
+
+NOTE from PE     0: MOM_restart: MOM run restarted using : INPUT/MOM.res.nc
+
+WARNING from PE     0: MOM_file_parser : SPONGE over-ridden.  Line: 'SPONGE = TRUE' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : SPONGE over-ridden.  Line: 'SPONGE = TRUE' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : ISOMIP_TNUDG over-ridden.  Line: 'ISOMIP_TNUDG = 0.1' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : ISOMIP_TNUDG over-ridden.  Line: 'ISOMIP_TNUDG = 0.1' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : ISOMIP_TNUDG over-ridden more times than is permitted. Line: 'ISOMIP_TNUDG = 0.1' in file MOM_override is being ignored.
+
+
+WARNING from PE     0: MOM_file_parser : ISOMIP_TNUDG over-ridden more times than is permitted. Line: 'ISOMIP_TNUDG = 0.1' in file MOM_override is being ignored.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolat is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolat is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolon is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolon is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolat_c is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolat_c is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolon_c is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolon_c is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolat_v is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolat_v is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolon_v is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolon_v is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolat_u is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolat_u is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolon_u is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/geolon_u is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/area_t is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/area_t is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/depth_ocean is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/depth_ocean is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/wet is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/wet is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/wet_c is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/wet_c is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/wet_u is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/wet_u is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/wet_v is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/wet_v is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/Coriolis is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: diag_manager_mod::register_static_field: module/field ocean_model/Coriolis is STATIC.  Cannot perform time operations average, maximum, or minimum on static fields.  Setting the time operation to "NONE" for this field.
+
+
+WARNING from PE     0: MOM_file_parser : HTBL_SHELF_MIN over-ridden.  Line: 'HTBL_SHELF_MIN = 10.0' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : HTBL_SHELF_MIN over-ridden.  Line: 'HTBL_SHELF_MIN = 10.0' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : KV over-ridden.  Line: 'KV = 1.0E-3' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : KV over-ridden.  Line: 'KV = 1.0E-3' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : KH over-ridden.  Line: 'KH = 6.0' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : KH over-ridden.  Line: 'KH = 6.0' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : SMAGORINSKY_KH over-ridden.  Line: 'SMAGORINSKY_KH = False' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : SMAGORINSKY_KH over-ridden.  Line: 'SMAGORINSKY_KH = False' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : BIHARMONIC over-ridden.  Line: 'BIHARMONIC = False' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : BIHARMONIC over-ridden.  Line: 'BIHARMONIC = False' in file MOM_override.
+
+ MOM domain decomposition
+whalo =    4, ehalo =    4, shalo =    4, nhalo =    4
+  X-AXIS =   30  30  30  30  30  30  30  30
+  Y-AXIS =   10  10  10  10
+
+WARNING from PE     0: MOM_file_parser : KD over-ridden.  Line: 'KD = 5.0E-5' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : KD over-ridden.  Line: 'KD = 5.0E-5' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : ICEBERGS_APPLY_RIGID_BOUNDARY occurs more times than is permitted. Line: 'ICEBERGS_APPLY_RIGID_BOUNDARY = True' in file MOM_override is being ignored.
+
+
+WARNING from PE     0: MOM_file_parser : ICEBERGS_APPLY_RIGID_BOUNDARY occurs more times than is permitted. Line: 'ICEBERGS_APPLY_RIGID_BOUNDARY = True' in file MOM_override is being ignored.
+
+
+WARNING from PE     0: MOM_file_parser : UTIDE over-ridden.  Line: 'UTIDE = 0.01' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : UTIDE over-ridden.  Line: 'UTIDE = 0.01' in file MOM_override.
+
+
+            ======== COMPLETED MOM INITIALIZATION ========
+
+ Finished initializing ocean model at 20171018 132233.489
+ Starting to initialize data_override at 20171018 132233.489
+ Finished initializing data_override at 20171018 132233.491
+ Finished initializing component models at 20171018 132233.491
+ Starting to initialize flux_exchange at 20171018 132233.491
+ ==>Note from atmos_ocean_fluxes_mod(atmos_ocean_fluxes_init): No gas fluxes
+ ==>Note from flux_exchange_mod(flux_exchange_init):
+  Number of exchanged tracers =            1
+ Tracer field name :sphum
+NOTE from PE     0: flux_exchange_mod: tracer "co2" not present in the atmosphere
+ NOTE from xgrid_mod: use second_order conservative exchange
+NOTE from PE     0: xgrid_mod: reading exchange grid information from mosaic grid file
+ Checked data is array of constant 1
+ ATM(ATMOCNLND)=  7.310448394961877E-005  7.310448394961877E-005
+  7.310448394961877E-005
+ OCN(ATMOCNLND)=  7.309664180373272E-005  7.309664180373272E-005
+  7.309664180373272E-005
+ LND(ATMOCNLND)=  7.842145886035077E-009  7.842145886035077E-009
+  7.842145886035077E-009
+ Checked data is array of random number between 0 and 1 using second_order
+ ATM(ATMOCNLND)=  3.831905989283624E-005  3.831905989283624E-005
+  3.831905989283624E-005
+ OCN(ATMOCNLND)=  3.791791870894052E-005  3.791791870894052E-005
+  3.791791870894052E-005
+ LND(ATMOCNLND)=  5.035592459105686E-009  5.035592459105686E-009
+  5.035592459105686E-009
+NOTE from PE     0: xgrid_mod: reading exchange grid information from mosaic grid file
+ Checked data is array of constant 1
+ LND(LNDOCN)=  7.309664180373272E-005  7.309664180373272E-005
+  7.309664180373272E-005
+ OCN(LNDOCN)=  7.309664180373272E-005  7.309664180373272E-005
+  7.309664180373272E-005
+NOTE from PE     0: diag_field_init in flux_exchange_mod: diagnostic field "dynamics", "area" is not in the diag_table
+ Finsihed initializing flux_exchange at 20171018 132233.639
+ BEGIN CHECKSUM(Atmos_data_type):: coupler_init+           0
+CHECKSUM::     atm%lon_bnd                 =      590864EA4407548
+CHECKSUM::     atm%lat_bnd                 =     FDAD8AF62B97F850
+CHECKSUM::     atm%t_bot                   =     8FD8000000000000
+CHECKSUM::     atm%tr_bot(:,:,n)           =                    0
+CHECKSUM::     atm%z_bot                   =     4600000000000000
+CHECKSUM::     atm%p_bot                   =     5A5F400000000000
+CHECKSUM::     atm%u_bot                   =                    0
+CHECKSUM::     atm%v_bot                   =                    0
+CHECKSUM::     atm%p_surf                  =     6387000000000000
+CHECKSUM::     atm%slp                     =     6387000000000000
+CHECKSUM::     atm%gust                    =                    0
+CHECKSUM::     atm%coszen                  =                    0
+CHECKSUM::     atm%flux_sw                 =                    0
+CHECKSUM::     atm%flux_sw_dir             =                    0
+CHECKSUM::     atm%flux_sw_dif             =                    0
+CHECKSUM::     atm%flux_sw_down_vis_dir    =                    0
+CHECKSUM::     atm%flux_sw_down_vis_dif    =                    0
+CHECKSUM::     atm%flux_sw_down_total_dir  =                    0
+CHECKSUM::     atm%flux_sw_down_total_dif  =                    0
+CHECKSUM::     atm%flux_sw_vis             =                    0
+CHECKSUM::     atm%flux_sw_vis_dir         =                    0
+CHECKSUM::     atm%flux_sw_vis_dif         =                    0
+CHECKSUM::     atm%flux_lw                 =                    0
+CHECKSUM::     atm%lprec                   =                    0
+CHECKSUM::     atm%fprec                   =                    0
+ BEGIN CHECKSUM(lnd_ice_Atm_bnd_type):: coupler_init+           0
+CHECKSUM::lnd_ice_atm_bnd_type%t           =     8FD8000000000000
+CHECKSUM::lnd_ice_atm_bnd_type%albedo      =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%albedo_vis_ =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%albedo_nir_ =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%albedo_vis_ =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%albedo_nir_ =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%land_frac   =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%dt_t        =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%dt_tr(:,:,n =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%dt_tr(:,:,n =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%dt_tr(:,:,n =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%dt_tr(:,:,n =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%u_flux      =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%v_flux      =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%dtaudu      =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%dtaudv      =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%u_star      =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%b_star      =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%q_star      =                    0
+CHECKSUM::lnd_ice_atm_bnd_type%rough_mom   =     E800000000000480
+ BEGIN CHECKSUM(ice_data_type):: coupler_init+           0
+ BEGIN CHECKSUM(atmos_ice_boundary_type):: coupler_init+           0
+CHECKSUM::atm_ice_bnd_type%u_flux          =                    0
+CHECKSUM::atm_ice_bnd_type%v_flux          =                    0
+CHECKSUM::atm_ice_bnd_type%u_star          =                    0
+CHECKSUM::atm_ice_bnd_type%t_flux          =                    0
+CHECKSUM::atm_ice_bnd_type%q_flux          =                    0
+CHECKSUM::atm_ice_bnd_type%lw_flux         =                    0
+CHECKSUM::atm_ice_bnd_type%sw_flux_vis_dir =                    0
+CHECKSUM::atm_ice_bnd_type%sw_flux_vis_dif =                    0
+CHECKSUM::atm_ice_bnd_type%sw_flux_nir_dir =                    0
+CHECKSUM::atm_ice_bnd_type%sw_flux_nir_dif =                    0
+CHECKSUM::atm_ice_bnd_type%lprec           =                    0
+CHECKSUM::atm_ice_bnd_type%fprec           =                    0
+CHECKSUM::atm_ice_bnd_type%dhdt            =                    0
+CHECKSUM::atm_ice_bnd_type%dedt            =                    0
+CHECKSUM::atm_ice_bnd_type%drdt            =                    0
+CHECKSUM::atm_ice_bnd_type%coszen          =                    0
+CHECKSUM::atm_ice_bnd_type%p               =                    0
+ BEGIN CHECKSUM(ocean_ice_boundary_type):: coupler_init+           0
+CHECKSUM::      ocn_ice_bnd_type%u         =                    0
+CHECKSUM::      ocn_ice_bnd_type%v         =                    0
+CHECKSUM::      ocn_ice_bnd_type%t         =     8FD8000000000000
+CHECKSUM::      ocn_ice_bnd_type%s         =                    0
+CHECKSUM::      ocn_ice_bnd_type%frazil    =                    0
+CHECKSUM::      ocn_ice_bnd_type%sea_level =                    0
+ BEGIN CHECKSUM(land_data_type):: coupler_init+           0
+CHECKSUM::         land%tile_size          =     3E28136D646EADB8
+CHECKSUM::         land%t_surf             =     A040000000000000
+CHECKSUM::         land%t_ca               =     A040000000000000
+CHECKSUM::         land%albedo             =                    0
+CHECKSUM::         land%albedo_vis_dir     =                    0
+CHECKSUM::         land%albedo_nir_dir     =                    0
+CHECKSUM::         land%albedo_vis_dif     =                    0
+CHECKSUM::         land%albedo_nir_dif     =                    0
+CHECKSUM::         land%rough_mom          =                    0
+CHECKSUM::         land%rough_heat         =                    0
+CHECKSUM::         land%rough_scale        =     A800000000000000
+CHECKSUM::         land%tr                 =                    0
+CHECKSUM::         land%discharge          =                    0
+CHECKSUM::         land%discharge_snow     =                    0
+CHECKSUM::         land%discharge_heat     =                    0
+ BEGIN CHECKSUM(atmos_land_boundary_type):: coupler_init+           0
+CHECKSUM::     albt%t_flux                 =                    0
+CHECKSUM::     albt%lw_flux                =                    0
+CHECKSUM::     albt%lwdn_flux              =                    0
+CHECKSUM::     albt%sw_flux                =                    0
+CHECKSUM::   albt%swdn_flux                =                    0
+CHECKSUM::     albt%lprec                  =                    0
+CHECKSUM::     albt%fprec                  =                    0
+CHECKSUM::     albt%tprec                  =                    0
+CHECKSUM::     albt%sw_flux_down_vis_dir   =                    0
+CHECKSUM::     albt%sw_flux_down_total_dir =                    0
+CHECKSUM::     albt%sw_flux_down_vis_dif   =                    0
+CHECKSUM::     albt%sw_flux_down_total_dif =                    0
+CHECKSUM::     albt%dhdt                   =                    0
+CHECKSUM::     albt%dhdq                   =                    0
+CHECKSUM::     albt%drdt                   =                    0
+CHECKSUM::     albt%cd_m                   =                    0
+CHECKSUM::     albt%cd_t                   =                    0
+CHECKSUM::     albt%ustar                  =                    0
+CHECKSUM::     albt%bstar                  =                    0
+CHECKSUM::     albt%wind                   =                    0
+CHECKSUM::     albt%z_bot                  =                    0
+CHECKSUM::     albt%drag_q                 =                    0
+CHECKSUM::     albt%p_surf                 =     6387000000000000
+CHECKSUM::     albt%tr_flux                =                    0
+CHECKSUM::     albt%dfdtr                  =                    0
+ BEGIN CHECKSUM(ocean_type):: coupler_init+           0
+   CHECKSUM::     ocean%t_surf    =     8D31C8D246935B6C
+   CHECKSUM::     ocean%s_surf    =     847CFE58817338AD
+   CHECKSUM::     ocean%u_surf    =     D48446BD95361CA8
+   CHECKSUM::     ocean%v_surf    =      488DF57146C1A19
+   CHECKSUM::     ocean%sea_lev   =     8AA9FD533C038222
+   CHECKSUM::     ocean%frazil    =                    0
+ BEGIN CHECKSUM(ice_ocean_boundary_type):: coupler_init+           0
+   CHECKSUM::iobt%u_flux          =                    0
+   CHECKSUM::iobt%v_flux          =                    0
+   CHECKSUM::iobt%t_flux          =                    0
+   CHECKSUM::iobt%q_flux          =                    0
+   CHECKSUM::iobt%salt_flux       =                    0
+   CHECKSUM::iobt%lw_flux         =                    0
+   CHECKSUM::iobt%sw_flux_vis_dir =                    0
+   CHECKSUM::iobt%sw_flux_vis_dif =                    0
+   CHECKSUM::iobt%sw_flux_nir_dir =                    0
+   CHECKSUM::iobt%sw_flux_nir_dif =                    0
+   CHECKSUM::iobt%lprec           =                    0
+   CHECKSUM::iobt%fprec           =                    0
+   CHECKSUM::iobt%runoff          =                    0
+   CHECKSUM::iobt%calving         =                    0
+   CHECKSUM::iobt%p               =                    0
+   CHECKSUM::iobt%ustar_berg      =                    0
+   CHECKSUM::iobt%area_berg       =                    0
+   CHECKSUM::iobt%mass_berg       =                    0
+ Exiting coupler_init at 20171018 132233.644
+ ================Stocks Report Guide=====================================
+  
+ S(t) = Total amount     of a tracer in the component model at time t.
+        Calculated via the component model itself.
+  
+ F(t) = Cumulative input of a tracer to the component model at time t.
+        Calculated via interchange of fluxes with other component models.
+  
+ S(t) - S(0) = Cumulative increase of the component stocks at time t
+               Calculated by the component itself.
+  
+ In a conserving component F(t)=S(t)-S(0) to within numerical accuracy.
+  
+ Component Model refers to one of OCN, ATM, LND or ICE
+ 
+ NOTE: When use_lag_fluxes=.true. is used in coupler, the ocean stocks 
+       calculations are in error by an order which scales as the inverse
+       of the number of time steps.
+  
+ =======================================================================
+ ======================Initial Stock S(0)===============================
+     water[Kg]                heat[Joules]             salt[Kg]
+ATM  0.000000000000000E+00    0.000000000000000E+00    0.000000000000000E+00
+LND  0.000000000000000E+00    0.000000000000000E+00    0.000000000000000E+00
+ICE  2.148978687719781E+16   -7.177588816984068E+21    0.000000000000000E+00
+OCN  1.369775249150880E+16   -1.697334750139707E+19    4.696316181148039E+14
+ ========================================================================
+ 
+MOM Day    3650.000      0: En 3.308510E-04, MaxCFL  0.00161, Mass 1.369775249151E+16, Salt  34.28530471739, Temp  -0.31181020548
+    Total Energy: 42907CACE7DAFBF3  4.5319157162869873E+12
+    Total Mass:   1.3697752491509026E+16, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
+    Total Salt:   4.6963161811481250E+14, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
+    Total Heat:  -1.6973347501397164E+19, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (icebergs/ocean_depth) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (icebergs/ocean_depth) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/melt) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/ustar_shelf) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/melt) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/ustar_shelf) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/tfreeze) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/u_ml) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/v_ml) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/h_ML) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/TKE_wind) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/tfreeze) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/u_ml) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/v_ml) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/h_ML) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/TKE_wind) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/tr_D2) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/tr_D2) NOT registered
+
+SIS Date     11/01/01 06:00:00   2160: Area 0.000000000000E+00 0.000000000000E+00, Mass  0.00000000000E+00 0.00000000000E+00
+ Total Ice Mass:   0.0000000000000000E+00, Change:  0.00000E+00 Error:  0.00000E+00 ( 0.0E+00)
+ Total Ice Salt:   0.0000000000000000E+00, Change:  0.00000E+00 Error:  0.00000E+00
+ Total Ice Heat:   0.0000000000000000E+00, Change:  0.00000E+00 Error: -2.69949E-04
+SIS Date     11/01/01 12:00:00   4320: Area 0.000000000000E+00 0.000000000000E+00, Mass  0.00000000000E+00 0.00000000000E+00
+ Total Ice Mass:   0.0000000000000000E+00, Change:  0.00000E+00 Error:  0.00000E+00 ( 0.0E+00)
+ Total Ice Salt:   0.0000000000000000E+00, Change:  0.00000E+00 Error:  0.00000E+00
+ Total Ice Heat:   0.0000000000000000E+00, Change:  0.00000E+00 Error:  2.35961E-04
